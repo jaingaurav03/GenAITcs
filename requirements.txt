@@ -2,7 +2,12 @@
 streamlit
 scikit-learn
 pandas
-
+chromadb
+langchain 
+ollama
+dot
+langchain_community
+langchain_ollama
 # Optional (for embeddings + FAISS)
 sentence-transformers
 faiss-cpu
