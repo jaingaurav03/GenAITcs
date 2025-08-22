@@ -1,0 +1,60 @@
++-------------------------------------------------------------+
+|                        End User                             |
+|   (Mobile App / Web App / Chat Widget)                      |
++---------------------------+---------------------------------+
+                            |
+                            v
++-------------------------------------------------------------+
+|                       Frontend Layer                        |
+|   - Chat UI / Widget                                         |
+|   - Secure HTTPS / API calls                                 |
++---------------------------+---------------------------------+
+                            |
+                            v
++-------------------------------------------------------------+
+|                       Backend Gateway                       |
+|   Assistant API (REST/GraphQL)                               |
+|   - Authentication (OAuth/Bank SSO)                         |
+|   - Request Routing / Orchestrator                          |
++---------------------------+---------------------------------+
+                            |
+          +---------------------------------------------+
+          |                                             |
+          v                                             v
++----------------------------+              +---------------------------+
+| Intent Detection           |              | PII Redaction & Guardrails|
+| - Classify query (cards,   |              | - Mask account numbers,    |
+|   loans, fraud, KYC, etc.) |              |   Aadhaar, PAN, etc.       |
++----------------------------+              +---------------------------+
+          |                                             |
+          v                                             v
++-------------------------------------------------------------+
+|                Retrieval Augmented Generation (RAG)         |
+|   - Query Vectorization / TF-IDF / Embeddings               |
+|   - Search top-k documents                                  |
+|   - Rank results                                            |
++-------------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------------+
+|                     Knowledge Sources                       |
+|   - Banking FAQs                                            |
+|   - Policies / RBI Regulations                             |
+|   - Loan / Card Product Sheets                             |
+|   - Internal Knowledge Base                                |
++-------------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------------+
+|                        LLM Engine                           |
+|   - OpenAI / Azure / Local LLM                             |
+|   - Generate final answer with citations                   |
++-------------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------------+
+|               Response Handling & Observability             |
+|   - Final Answer returned to Frontend                       |
+|   - Logging & Feedback capture                              |
+|   - Analytics & Monitoring (latency, safety, CSAT)          |
++-------------------------------------------------------------+
