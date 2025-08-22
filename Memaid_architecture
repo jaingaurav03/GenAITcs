@@ -1,0 +1,47 @@
+flowchart LR
+subgraph User
+C1[Web / Mobile App]
+end
+
+
+subgraph Frontend
+UI[Chat Widget SDK]
+end
+
+
+subgraph Backend
+API[Assistant API Gateway]
+ORCH[Orchestrator / Router]
+INTENT[Lightweight Intent Classifier]
+PII[PII Redaction & Policy Guard]
+RAG[RAG Service (Retriever + Ranker)]
+KB[(Banking Knowledge Base\n(FAQs, Policies, Product Sheets))]
+VEC[(Vector Index / TF‑IDF Index)]
+LLM[(LLM Provider\n(OpenAI / Azure / Local))]
+OBS[Observability & Analytics]
+LOGS[(Chat Logs & Feedback)]
+end
+
+
+subgraph Security
+AUTH[OAuth / Bank SSO]
+VAULT[Secrets Vault]
+end
+
+
+C1 -->|HTTPS| UI -->|/chat| API --> ORCH
+ORCH --> INTENT
+ORCH --> PII
+PII --> RAG
+RAG --> VEC
+VEC <--> KB
+RAG -->|top‑k context| LLM
+INTENT --> LLM
+ORCH -->|policy check| PII
+LLM --> ORCH --> API --> UI --> C1
+
+
+ORCH --> OBS
+ORCH --> LOGS
+AUTH -.-> API
+VAULT -.-> ORCH
