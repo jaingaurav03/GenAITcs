@@ -1,0 +1,7 @@
+id,title,text,category
+faq_card_limit_1,Increase Credit Card Limit,"You can request a credit limit increase from the mobile app: Cards > Manage > Increase Limit. Eligibility depends on repayment history, utilization, and KYC status. Processing takes 1-2 working days.",cards
+faq_card_block_1,Block a Lost or Stolen Card,"Immediately block your card via the app: Cards > Manage > Block Card, or call 24x7 helpline. A replacement can be requested after blocking.",cards
+faq_account_balance_1,Check Account Balance,"Check your balance via mobile banking > Accounts, internet banking dashboard, or ATM mini-statement. For SMS banking, send BAL <last4> to the bank short code.",accounts
+faq_loan_prepay_1,Prepay a Personal Loan,"You can prepay partially or fully via the loan dashboard. Prepayment charges may apply as per your sanction letter.",loans
+faq_kyc_update_1,Update KYC,"Update KYC in app: Profile > KYC > Update. Accepted docs include Aadhaar, PAN, passport, voter ID, or utility bill for address proof.",kyc
+faq_fraud_report_1,Report Fraudulent Transaction,"If you notice an unauthorized transaction, block your card immediately and raise a dispute in the app: Help > Disputes. File a police complaint if asked by support.",fraud

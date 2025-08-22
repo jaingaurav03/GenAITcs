@@ -1,0 +1,8 @@
+# Minimal requirements for TF-IDF demo
+streamlit
+scikit-learn
+pandas
+
+# Optional (for embeddings + FAISS)
+sentence-transformers
+faiss-cpu
