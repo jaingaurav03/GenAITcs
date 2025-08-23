@@ -11,3 +11,4 @@ langchain_ollama
 # Optional (for embeddings + FAISS)
 sentence-transformers
 faiss-cpu
+pdfplumber

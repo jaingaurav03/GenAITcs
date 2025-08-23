@@ -31,7 +31,7 @@ if "memory" not in st.session_state or st.session_state.get("prev_context_size")
 
 # ---- LangChain Components ---- #
 llm = ChatOllama(model=MODEL, streaming=True)
-embeddings = OllamaEmbeddings(model="mxbai-embed-large")
+embeddings = OllamaEmbeddings(model="deepseek-r1")
 
 
 # Initialize Chroma vector store

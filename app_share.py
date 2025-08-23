@@ -1,24 +1,25 @@
 import streamlit as st
 import os
 from langchain.chains import RetrievalQA
-from langchain.chat_models import ChatOllama
+#from langchain.chat_models import ChatOllama
+from langchain_community.chat_models import ChatOllama
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 from langchain_ollama.embeddings import OllamaEmbeddings
-from langchain_community.vectorstores import Chroma, Milvus, MongoDBAtlasVectorSearch, ElasticVectorSearch
+#from langchain_community.vectorstores import Chroma, Milvus, MongoDBAtlasVectorSearch, ElasticVectorSearch
 import os
 from dotenv import load_dotenv
 import getpass
 import os
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_ollama.chat_models import ChatOllama
+#from langchain_ollama.chat_models import ChatOllama
 from langchain_community.vectorstores import Chroma
-from langchain_ollama.embeddings import OllamaEmbeddings
+#from langchain_ollama.embeddings import OllamaEmbeddings
 from langchain_community.document_loaders import WebBaseLoader, CSVLoader, JSONLoader, PyPDFLoader
 
 
-load_dotenv()
+#load_dotenv()
 
 
 ######
@@ -35,9 +36,9 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-
-pdf_files = ["banking_customers.pdf"]
-
+os.environ["USER_AGENT"] = "BankBuddyBot/1.0"
+pdf_files = []#["banking_customers.pdf"]
+file_paths = ["banking_customers.csv", "bank_kb.csv"]
 
 def WebsiteLoader(urls):
     loader = WebBaseLoader(urls)
@@ -62,10 +63,10 @@ def PDFLoader(pdf_files):
 
 
 pdf_list = PDFLoader(pdf_files)
+csv_list = CSVFileLoader(file_paths)
 
 
-
-llm = ChatOllama(model="llama-3.2-3b-it" )
+llm = ChatOllama(model="llama3" )
 
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=500,
@@ -76,14 +77,14 @@ text_splitter = RecursiveCharacterTextSplitter(
 
 
 # Combine all loaded documents
-all_documents = pdf_list
-
+all_documents = pdf_list + csv_list
+all_documents = [doc for sublist in all_documents for doc in sublist]
 splited_documents = text_splitter.split_documents(all_documents)
 print(splited_documents)
 
 
 embeddings  = OllamaEmbeddings(
-  model='gte-large'
+  model='mxbai-embed-large'
 )
 persist_directory = "./chroma_db"
 
@@ -102,13 +103,13 @@ print("✅ Data successfully stored in ChromaDB!")
 
 # ---- Streamlit UI ---- #
 st.set_page_config(layout="wide")
-st.title("My Local Chatbot")
+st.title("Bank Buddy Chatbot")
 
 st.sidebar.header("Settings")
 with st.sidebar:
   st.header("Paste your URL")
   website_url = st.text_input("Enter URL")
-MODEL = "llama-3.2-3b-it"
+MODEL = "llama3"
 MAX_HISTORY = st.sidebar.number_input("Max History", 1, 10, 2)
 CONTEXT_SIZE = st.sidebar.number_input("Context Size", 1024, 16384, 8192, step=1024)
 
